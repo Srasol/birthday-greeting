@@ -1,0 +1,1807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #05030a;
+    color: white;
+}
+
+body {
+    position: relative;
+}
+
+/* ================= BACKGROUND ================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -5;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 20, 100, .20), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(150, 30, 255, .18), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255, 70, 150, .12), transparent 40%),
+        #05030a;
+}
+
+.light {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .25;
+    animation: moveLight 12s infinite alternate ease-in-out;
+}
+
+.light.one {
+    background: #ff1e68;
+    left: -100px;
+    top: 10%;
+}
+
+.light.two {
+    background: #8b32ff;
+    right: -100px;
+    top: 30%;
+    animation-delay: 2s;
+}
+
+.light.three {
+    background: #ff6bba;
+    left: 35%;
+    bottom: -180px;
+    animation-delay: 4s;
+}
+
+@keyframes moveLight {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(100px, -70px) scale(1.3);
+    }
+}
+
+/* ================= STARS ================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -3;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: .7;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .15;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+/* ================= SCREENS ================= */
+
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ================= INTRO ================= */
+
+.intro-content {
+    text-align: center;
+    animation: fadeUp 1.5s ease;
+}
+
+.intro-small {
+    font-size: 16px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .65;
+    margin-bottom: 20px;
+}
+
+.intro-title {
+    font-size: clamp(35px, 7vw, 75px);
+    background: linear-gradient(90deg, #fff, #ff75b5, #fff);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: 200%;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= ENVELOPE ================= */
+
+.envelope-wrapper {
+    position: relative;
+    width: min(430px, 90vw);
+    height: 330px;
+    cursor: pointer;
+    perspective: 1200px;
+}
+
+.envelope-shadow {
+    position: absolute;
+    width: 80%;
+    height: 35px;
+    left: 10%;
+    bottom: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .6);
+    filter: blur(20px);
+}
+
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 230px;
+    bottom: 35px;
+    background: linear-gradient(145deg, #a8144d, #5d082c);
+    border-radius: 10px;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.6),
+        0 0 40px rgba(255,40,120,.15);
+    transform-style: preserve-3d;
+    transition: transform .8s ease;
+}
+
+.envelope-wrapper:hover .envelope {
+    transform: translateY(-8px) rotateX(3deg);
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.envelope-front::before,
+.envelope-front::after {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 2px;
+    background: rgba(255,255,255,.15);
+    top: 50%;
+}
+
+.envelope-front::before {
+    left: -20%;
+    transform: rotate(31deg);
+}
+
+.envelope-front::after {
+    right: -20%;
+    transform: rotate(-31deg);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(135deg, #c42161, #700b35);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 1.1s ease;
+    z-index: 5;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.letter {
+    position: absolute;
+    width: 86%;
+    height: 190px;
+    left: 7%;
+    bottom: 20px;
+    background: linear-gradient(145deg, #fff, #f7dce8);
+    color: #671034;
+    border-radius: 8px;
+    z-index: 2;
+    transition: transform 1.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+.envelope.open .letter {
+    transform: translateY(-145px);
+}
+
+.letter-text {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.seal {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ff4f91, #a60c4c);
+    border: 3px solid rgba(255,255,255,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: calc(50% - 31px);
+    bottom: 70px;
+    z-index: 10;
+    font-size: 28px;
+    box-shadow: 0 5px 25px rgba(255,40,120,.5);
+    transition: opacity .5s ease;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+/* ================= GLASS CARD ================= */
+
+.glass-card {
+    width: min(800px, 94vw);
+    padding: clamp(30px, 6vw, 65px);
+    border-radius: 30px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        inset 0 1px rgba(255,255,255,.1);
+    text-align: center;
+}
+
+.heart-icon {
+    font-size: 55px;
+    animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.12);
+    }
+}
+
+.heading {
+    font-size: clamp(38px, 7vw, 70px);
+    margin: 15px 0 25px;
+    background: linear-gradient(90deg, #fff, #ff65a8, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.message {
+    min-height: 150px;
+    line-height: 1.9;
+    font-size: clamp(16px, 2vw, 21px);
+    color: rgba(255,255,255,.86);
+    white-space: pre-line;
+}
+
+.primary-button {
+    margin-top: 30px;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    background: linear-gradient(135deg,#ff397c,#b3165a);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255,40,120,.3);
+    transition: .3s;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255,40,120,.5);
+}
+
+/* ================= PHOTOS ================= */
+
+.photo-screen {
+    flex-direction: column;
+}
+
+.photo-title {
+    font-size: clamp(30px, 6vw, 55px);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.photo-frame {
+    width: min(700px, 90vw);
+    height: min(62vh, 550px);
+    padding: 14px;
+    position: relative;
+    background:
+        linear-gradient(135deg,
+        #fff1a8,
+        #c88722,
+        #fff3ae,
+        #9a5c0d,
+        #f7d76b);
+    border-radius: 12px;
+    box-shadow:
+        0 0 0 2px rgba(255,255,255,.15),
+        0 20px 70px rgba(0,0,0,.7),
+        0 0 50px rgba(255,190,50,.22);
+    transform: rotateX(2deg) rotateY(-2deg);
+    animation: frameFloat 5s ease-in-out infinite;
+}
+
+@keyframes frameFloat {
+    0%,100% {
+        transform: translateY(0) rotateX(2deg) rotateY(-2deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotateX(-1deg) rotateY(2deg);
+    }
+}
+
+.photo-inner {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    background: #24140d;
+    border: 2px solid #f7df88;
+    border-radius: 5px;
+}
+
+.photo-inner img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: 5px solid #fff8df;
+    border-radius: 2px;
+    opacity: 0;
+    transform: scale(1.05);
+    transition:
+        opacity 1s ease,
+        transform 4.5s ease;
+}
+
+.photo-inner img.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.photo-caption {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    font-size: 17px;
+}
+
+.photo-counter {
+    margin-top: 15px;
+    font-size: 14px;
+    letter-spacing: 4px;
+    opacity: .7;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    transition: .3s;
+}
+
+.dot.active {
+    width: 25px;
+    border-radius: 10px;
+    background: #ff5795;
+}
+
+/* ================= FINAL ================= */
+
+.final-card {
+    text-align: center;
+}
+
+.final-heart {
+    font-size: 90px;
+    animation: heartbeat 1s infinite;
+}
+
+.final-title {
+    font-size: clamp(45px, 8vw, 85px);
+    margin: 10px 0;
+}
+
+.final-text {
+    font-size: 19px;
+    opacity: .8;
+}
+
+/* ================= DOWNLOAD BUTTON ================= */
+
+.download-round-button {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    margin-top: 30px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: linear-gradient(135deg,#ff397c,#b3165a);
+    color: white;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255,40,120,.35);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.download-round-button:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 12px 35px rgba(255,40,120,.55);
+}
+
+.download-round-button:active {
+    transform: scale(.94);
+}
+
+.download-round-button.recording {
+    background: #8b0c36;
+    animation: recordingPulse 1s infinite;
+}
+
+@keyframes recordingPulse {
+    50% {
+        box-shadow: 0 0 0 12px rgba(255,40,120,.08),
+                    0 0 35px rgba(255,40,120,.8);
+    }
+}
+
+.download-status {
+    min-height: 25px;
+    margin-top: 15px;
+    font-size: 13px;
+    opacity: .75;
+}
+
+/* ================= MUSIC ================= */
+
+.music-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.08);
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+/* ================= PARTICLES ================= */
+
+.particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+    animation: particleFly 2.5s ease-out forwards;
+}
+
+@keyframes particleFly {
+    from {
+        opacity: 1;
+        transform: translate(0,0) scale(1) rotate(0deg);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(var(--x), var(--y))
+            scale(.2)
+            rotate(360deg);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:600px) {
+
+    .envelope-wrapper {
+        height: 290px;
+    }
+
+    .envelope {
+        height: 190px;
+    }
+
+    .letter {
+        height: 160px;
+    }
+
+    .envelope.open .letter {
+        transform: translateY(-115px);
+    }
+
+    .seal {
+        bottom: 55px;
+    }
+
+    .photo-frame {
+        height: 55vh;
+        padding: 9px;
+    }
+
+    .photo-caption {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="light one"></div>
+    <div class="light two"></div>
+    <div class="light three"></div>
+</div>
+
+<div class="stars" id="stars"></div>
+
+<audio id="birthdayMusic" src="music/birthday.mpeg" preload="auto" loop></audio>
+
+<button
+    class="music-button"
+    id="musicButton"
+    title="Music"
+>
+    ♪
+</button>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="screen active" id="introScreen">
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            A little surprise awaits...
+        </div>
+
+        <div class="intro-title">
+            Something Special ❤️
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ENVELOPE ================= -->
+
+<section class="screen" id="envelopeScreen">
+
+    <div class="envelope-wrapper" id="envelopeWrapper">
+
+        <div class="envelope-shadow"></div>
+
+        <div class="envelope" id="envelope">
+
+            <div class="letter">
+
+                <div class="letter-text">
+                    Open me ❤️
+                </div>
+
+            </div>
+
+            <div class="envelope-front"></div>
+
+            <div class="flap"></div>
+
+            <div class="seal">
+                ❤️
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MESSAGE ================= -->
+
+<section class="screen" id="messageScreen">
+
+    <div class="glass-card">
+
+        <div class="heart-icon">
+            ❤️
+        </div>
+
+        <h1 class="heading">
+            Happy Birthday!
+        </h1>
+
+        <div
+            class="message"
+            id="birthdayMessage"
+        ></div>
+
+        <button
+            class="primary-button"
+            id="continueButton"
+        >
+            Continue ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PHOTOS ================= -->
+
+<section class="screen photo-screen" id="photoScreen">
+
+    <h1 class="photo-title">
+        Beautiful Memories ✨
+    </h1>
+
+    <div class="photo-frame">
+
+        <div class="photo-inner">
+
+            <img
+                id="birthdayPhoto"
+                src="photos/photo1.jpg"
+                alt="Birthday memory"
+            >
+
+        </div>
+
+        <div
+            class="photo-caption"
+            id="photoCaption"
+        >
+            A beautiful memory ❤️
+        </div>
+
+    </div>
+
+    <div
+        class="photo-counter"
+        id="photoCounter"
+    >
+        01 / 05
+    </div>
+
+    <div class="dots" id="dots"></div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="screen" id="finalScreen">
+
+    <div class="glass-card final-card">
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+        <h1 class="final-title">
+            Happy Birthday!
+        </h1>
+
+        <p class="final-text">
+            May your life always be filled with happiness,
+            beautiful memories and countless smiles. ✨
+        </p>
+
+        <!-- SMALL ROUND DOWNLOAD BUTTON -->
+
+        <button
+            id="downloadVideoButton"
+            class="download-round-button"
+            title="Download Birthday Video"
+            aria-label="Download Birthday Video"
+        >
+            ⬇
+        </button>
+
+        <div
+            class="download-status"
+            id="downloadStatus"
+        ></div>
+
+        <br>
+
+        <button
+            class="primary-button"
+            id="replayButton"
+        >
+            Replay ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+const birthdayMessage =
+`Today is a special day because it celebrates someone truly special.
+
+May every new year of your life bring you more happiness, more beautiful memories, more success and countless reasons to smile.
+
+Keep shining, keep smiling and keep being amazing. ❤️`;
+
+const photoCaptions = [
+    "A beautiful memory ❤️",
+    "Another precious moment ✨",
+    "Memories worth keeping forever 💕",
+    "A moment to remember 🌸",
+    "Beautiful memories, beautiful smiles ❤️"
+];
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const introScreen =
+    document.getElementById("introScreen");
+
+const envelopeScreen =
+    document.getElementById("envelopeScreen");
+
+const messageScreen =
+    document.getElementById("messageScreen");
+
+const photoScreen =
+    document.getElementById("photoScreen");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+const envelopeWrapper =
+    document.getElementById("envelopeWrapper");
+
+const envelope =
+    document.getElementById("envelope");
+
+const birthdayMessageElement =
+    document.getElementById("birthdayMessage");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+const birthdayPhoto =
+    document.getElementById("birthdayPhoto");
+
+const photoCaption =
+    document.getElementById("photoCaption");
+
+const photoCounter =
+    document.getElementById("photoCounter");
+
+const dots =
+    document.getElementById("dots");
+
+const replayButton =
+    document.getElementById("replayButton");
+
+const birthdayMusic =
+    document.getElementById("birthdayMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const downloadVideoButton =
+    document.getElementById("downloadVideoButton");
+
+const downloadStatus =
+    document.getElementById("downloadStatus");
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+const starsContainer =
+    document.getElementById("stars");
+
+for (let i = 0; i < 120; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    star.style.animationDuration =
+        (1.5 + Math.random() * 3) + "s";
+
+    starsContainer.appendChild(star);
+}
+
+
+/* =========================================================
+   SCREEN CONTROL
+========================================================= */
+
+function showScreen(screen) {
+
+    document.querySelectorAll(".screen")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+    screen.classList.add("active");
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+setTimeout(() => {
+
+    showScreen(envelopeScreen);
+
+}, 3500);
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+let musicPlaying = false;
+
+async function startMusic() {
+
+    try {
+
+        await birthdayMusic.play();
+
+        musicPlaying = true;
+
+        musicButton.textContent = "♫";
+
+    } catch (error) {
+
+        console.log(
+            "Music waiting for browser permission."
+        );
+
+    }
+}
+
+musicButton.addEventListener("click", async () => {
+
+    if (birthdayMusic.paused) {
+
+        await startMusic();
+
+    } else {
+
+        birthdayMusic.pause();
+
+        musicPlaying = false;
+
+        musicButton.textContent = "♪";
+    }
+
+});
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+let envelopeOpened = false;
+
+envelopeWrapper.addEventListener("click", async () => {
+
+    if (envelopeOpened) return;
+
+    envelopeOpened = true;
+
+    envelope.classList.add("open");
+
+    await startMusic();
+
+    createHearts();
+
+    setTimeout(() => {
+
+        showScreen(messageScreen);
+
+        typeMessage();
+
+    }, 1600);
+
+});
+
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
+
+function typeMessage() {
+
+    birthdayMessageElement.textContent = "";
+
+    let index = 0;
+
+    const interval =
+        setInterval(() => {
+
+            birthdayMessageElement.textContent +=
+                birthdayMessage[index];
+
+            index++;
+
+            if (index >= birthdayMessage.length) {
+
+                clearInterval(interval);
+
+            }
+
+        }, 18);
+}
+
+
+/* =========================================================
+   CONTINUE
+========================================================= */
+
+continueButton.addEventListener("click", () => {
+
+    showScreen(photoScreen);
+
+    startPhotoShow();
+
+});
+
+
+/* =========================================================
+   PHOTOS
+========================================================= */
+
+const totalPhotos = 5;
+
+let currentPhoto = 1;
+
+let photoTimer = null;
+
+for (let i = 1; i <= totalPhotos; i++) {
+
+    const dot =
+        document.createElement("div");
+
+    dot.className = "dot";
+
+    if (i === 1) {
+        dot.classList.add("active");
+    }
+
+    dots.appendChild(dot);
+}
+
+function updateDots() {
+
+    document.querySelectorAll(".dot")
+        .forEach((dot, index) => {
+
+            dot.classList.toggle(
+                "active",
+                index === currentPhoto - 1
+            );
+
+        });
+}
+
+
+function showPhoto(number) {
+
+    birthdayPhoto.classList.remove("show");
+
+    setTimeout(() => {
+
+        birthdayPhoto.src =
+            `photos/photo${number}.jpg`;
+
+        birthdayPhoto.alt =
+            `Birthday memory ${number}`;
+
+        photoCaption.textContent =
+            photoCaptions[number - 1];
+
+        photoCounter.textContent =
+            String(number).padStart(2, "0") +
+            " / 05";
+
+        updateDots();
+
+        birthdayPhoto.onload = () => {
+
+            birthdayPhoto.classList.add("show");
+
+        };
+
+    }, 400);
+}
+
+
+function startPhotoShow() {
+
+    currentPhoto = 1;
+
+    showPhoto(currentPhoto);
+
+    clearInterval(photoTimer);
+
+    photoTimer =
+        setInterval(() => {
+
+            currentPhoto++;
+
+            if (currentPhoto > totalPhotos) {
+
+                clearInterval(photoTimer);
+
+                setTimeout(() => {
+
+                    createFireworks();
+
+                    showScreen(finalScreen);
+
+                }, 1500);
+
+                return;
+            }
+
+            showPhoto(currentPhoto);
+
+        }, 4500);
+}
+
+
+/* =========================================================
+   HEART PARTICLES
+========================================================= */
+
+function createHearts() {
+
+    for (let i = 0; i < 35; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "particle";
+
+        heart.textContent =
+            Math.random() > .5 ? "❤️" : "💕";
+
+        heart.style.left =
+            (30 + Math.random() * 40) + "%";
+
+        heart.style.top =
+            (45 + Math.random() * 20) + "%";
+
+        heart.style.setProperty(
+            "--x",
+            ((Math.random() - .5) * 600) + "px"
+        );
+
+        heart.style.setProperty(
+            "--y",
+            (-150 - Math.random() * 500) + "px"
+        );
+
+        heart.style.fontSize =
+            (12 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 3000);
+    }
+}
+
+
+/* =========================================================
+   FIREWORKS
+========================================================= */
+
+function createFireworks() {
+
+    for (let burst = 0; burst < 5; burst++) {
+
+        setTimeout(() => {
+
+            const centerX =
+                15 + Math.random() * 70;
+
+            const centerY =
+                15 + Math.random() * 55;
+
+            for (let i = 0; i < 30; i++) {
+
+                const particle =
+                    document.createElement("div");
+
+                particle.className =
+                    "particle";
+
+                particle.textContent =
+                    Math.random() > .5
+                        ? "✦"
+                        : "•";
+
+                particle.style.left =
+                    centerX + "%";
+
+                particle.style.top =
+                    centerY + "%";
+
+                const angle =
+                    (Math.PI * 2 * i) / 30;
+
+                const distance =
+                    80 + Math.random() * 180;
+
+                particle.style.setProperty(
+                    "--x",
+                    Math.cos(angle) * distance + "px"
+                );
+
+                particle.style.setProperty(
+                    "--y",
+                    Math.sin(angle) * distance + "px"
+                );
+
+                particle.style.fontSize =
+                    (10 + Math.random() * 14) + "px";
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+
+                    particle.remove();
+
+                }, 2600);
+
+            }
+
+        }, burst * 500);
+
+    }
+}
+
+
+/* =========================================================
+   REPLAY
+========================================================= */
+
+replayButton.addEventListener("click", () => {
+
+    clearInterval(photoTimer);
+
+    currentPhoto = 1;
+
+    birthdayMessageElement.textContent = "";
+
+    birthdayPhoto.classList.remove("show");
+
+    envelope.classList.remove("open");
+
+    envelopeOpened = false;
+
+    birthdayMusic.currentTime = 0;
+
+    birthdayMusic.pause();
+
+    musicPlaying = false;
+
+    musicButton.textContent = "♪";
+
+    downloadStatus.textContent = "";
+
+    showScreen(introScreen);
+
+    setTimeout(() => {
+
+        showScreen(envelopeScreen);
+
+    }, 3500);
+
+});
+
+
+/* =========================================================
+   VIDEO RECORDING
+========================================================= */
+
+let recording = false;
+
+
+/*
+    Find the best supported video MIME type.
+*/
+
+function getSupportedMimeType() {
+
+    const types = [
+
+        "video/webm;codecs=vp9,opus",
+
+        "video/webm;codecs=vp8,opus",
+
+        "video/webm"
+
+    ];
+
+    for (const type of types) {
+
+        if (
+            typeof MediaRecorder !== "undefined" &&
+            MediaRecorder.isTypeSupported(type)
+        ) {
+
+            return type;
+
+        }
+
+    }
+
+    return "";
+
+}
+
+
+/*
+    Wait for a specified amount of time.
+*/
+
+function wait(ms) {
+
+    return new Promise(resolve => {
+
+        setTimeout(resolve, ms);
+
+    });
+
+}
+
+
+/*
+    Start the actual recording.
+*/
+
+async function recordBirthdayVideo() {
+
+    if (recording) return;
+
+    if (!navigator.mediaDevices ||
+        !navigator.mediaDevices.getDisplayMedia) {
+
+        downloadStatus.textContent =
+            "Your browser does not support video recording.";
+
+        return;
+    }
+
+    const mimeType =
+        getSupportedMimeType();
+
+    if (!mimeType) {
+
+        downloadStatus.textContent =
+            "Video recording is not supported by this browser.";
+
+        return;
+    }
+
+
+    try {
+
+        recording = true;
+
+        downloadVideoButton.classList.add(
+            "recording"
+        );
+
+        downloadVideoButton.textContent = "●";
+
+        downloadStatus.textContent =
+            "Choose THIS TAB in the sharing window.";
+
+
+        /*
+            Ask browser to capture this tab.
+        */
+
+        const displayStream =
+            await navigator.mediaDevices.getDisplayMedia({
+
+                video: {
+                    frameRate: 30
+                },
+
+                audio: true,
+
+                preferCurrentTab: true,
+
+                selfBrowserSurface: "include",
+
+                surfaceSwitching: "exclude"
+
+            });
+
+
+        /*
+            Check whether user cancelled.
+        */
+
+        if (!displayStream ||
+            displayStream.getVideoTracks().length === 0) {
+
+            throw new Error(
+                "Recording was cancelled."
+            );
+
+        }
+
+
+        downloadStatus.textContent =
+            "Recording your birthday surprise...";
+
+
+        const recordedChunks = [];
+
+
+        const recorder =
+            new MediaRecorder(
+                displayStream,
+                {
+                    mimeType: mimeType,
+                    videoBitsPerSecond: 8000000
+                }
+            );
+
+
+        recorder.ondataavailable =
+            event => {
+
+                if (event.data &&
+                    event.data.size > 0) {
+
+                    recordedChunks.push(
+                        event.data
+                    );
+
+                }
+
+            };
+
+
+        const stopped =
+            new Promise(resolve => {
+
+                recorder.onstop = resolve;
+
+            });
+
+
+        /*
+            Stop recording when browser sharing
+            is manually stopped.
+        */
+
+        const videoTrack =
+            displayStream.getVideoTracks()[0];
+
+        videoTrack.addEventListener(
+            "ended",
+            () => {
+
+                if (
+                    recorder.state !==
+                    "inactive"
+                ) {
+
+                    recorder.stop();
+
+                }
+
+            }
+        );
+
+
+        recorder.start(1000);
+
+
+        /*
+            Restart the birthday experience.
+        */
+
+        clearInterval(photoTimer);
+
+        currentPhoto = 1;
+
+        birthdayMessageElement.textContent = "";
+
+        birthdayPhoto.classList.remove("show");
+
+        envelope.classList.remove("open");
+
+        envelopeOpened = false;
+
+        showScreen(introScreen);
+
+
+        /*
+            Give the recording a short cinematic intro.
+        */
+
+        await wait(2500);
+
+        showScreen(envelopeScreen);
+
+        await wait(1800);
+
+
+        /*
+            Open envelope.
+        */
+
+        envelopeOpened = true;
+
+        envelope.classList.add("open");
+
+        await startMusic();
+
+        createHearts();
+
+        await wait(1700);
+
+
+        /*
+            Message.
+        */
+
+        showScreen(messageScreen);
+
+        typeMessage();
+
+        await wait(
+            Math.max(
+                6500,
+                birthdayMessage.length * 18 + 1500
+            )
+        );
+
+
+        /*
+            Photos.
+        */
+
+        showScreen(photoScreen);
+
+        currentPhoto = 1;
+
+        showPhoto(currentPhoto);
+
+        await wait(4500);
+
+        for (
+            let photo = 2;
+            photo <= totalPhotos;
+            photo++
+        ) {
+
+            currentPhoto = photo;
+
+            showPhoto(photo);
+
+            await wait(4500);
+
+        }
+
+
+        /*
+            Final screen.
+        */
+
+        createFireworks();
+
+        showScreen(finalScreen);
+
+        await wait(5000);
+
+
+        /*
+            Stop music.
+        */
+
+        birthdayMusic.pause();
+
+
+        /*
+            Stop recorder.
+        */
+
+        if (
+            recorder.state !==
+            "inactive"
+        ) {
+
+            recorder.stop();
+
+        }
+
+
+        await stopped;
+
+
+        /*
+            Stop screen capture.
+        */
+
+        displayStream
+            .getTracks()
+            .forEach(track => track.stop());
+
+
+        /*
+            Create video file.
+        */
+
+        const blob =
+            new Blob(
+                recordedChunks,
+                {
+                    type: mimeType
+                }
+            );
+
+
+        if (blob.size === 0) {
+
+            throw new Error(
+                "The recorded video is empty."
+            );
+
+        }
+
+
+        /*
+            Download.
+        */
+
+        const url =
+            URL.createObjectURL(blob);
+
+        const link =
+            document.createElement("a");
+
+        link.href = url;
+
+        link.download =
+            "Birthday-Surprise.webm";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+
+        setTimeout(() => {
+
+            URL.revokeObjectURL(url);
+
+        }, 10000);
+
+
+        downloadStatus.textContent =
+            "🎬 Birthday video downloaded successfully!";
+
+
+    } catch (error) {
+
+        console.error(
+            "Birthday video error:",
+            error
+        );
+
+        if (
+            error.name ===
+            "NotAllowedError"
+        ) {
+
+            downloadStatus.textContent =
+                "Recording permission was cancelled.";
+
+        } else {
+
+            downloadStatus.textContent =
+                "Video recording failed. Please try again.";
+
+        }
+
+    } finally {
+
+        recording = false;
+
+        downloadVideoButton.classList.remove(
+            "recording"
+        );
+
+        downloadVideoButton.textContent = "⬇";
+
+    }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
+
+downloadVideoButton.addEventListener(
+    "click",
+    recordBirthdayVideo
+);
+
+
+/* =========================================================
+   PRELOAD PHOTOS
+========================================================= */
+
+for (let i = 1; i <= 5; i++) {
+
+    const image =
+        new Image();
+
+    image.src =
+        `photos/photo${i}.jpg`;
+
+}
+
+</script>
+
+</body>
+</html>
