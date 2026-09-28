@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#030305">
+<title>Happy Birthday ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 180, 60, .12), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 50, 120, .12), transparent 35%),
+        #030305;
+    color: white;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .28;
+    animation: floatingGlow 10s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    background: #ffb52e;
+    left: -120px;
+    top: 10%;
+}
+
+.glow.two {
+    background: #ff3377;
+    right: -120px;
+    bottom: 10%;
+    animation-delay: -4s;
+}
+
+.glow.three {
+    background: #704cff;
+    left: 45%;
+    top: -180px;
+    animation-delay: -7s;
+}
+
+@keyframes floatingGlow {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(60px, 40px) scale(1.2);
+    }
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    opacity: .4;
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,220,150,.8) 1px, transparent 1px);
+    background-size: 90px 90px, 130px 130px;
+    background-position: 10px 20px, 50px 80px;
+}
+
+/* =========================================================
+   FIREWORKS
+========================================================= */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 18px;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    transform-origin: 50% 100%;
+    background: #fff;
+    box-shadow: 0 0 8px currentColor, 0 0 18px currentColor;
+    animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform:
+            rotate(var(--angle))
+            translateY(0)
+            scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            rotate(var(--angle))
+            translateY(var(--distance))
+            scale(.1);
+        opacity: 0;
+    }
+}
+
+.rocket {
+    position: absolute;
+    width: 3px;
+    height: 70px;
+    border-radius: 50%;
+    background: white;
+    box-shadow:
+        0 0 8px white,
+        0 0 15px #ffd36a;
+    animation: rocketFly 1s ease-out forwards;
+}
+
+@keyframes rocketFly {
+    0% {
+        transform: translateY(100px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-250px);
+        opacity: .8;
+    }
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.screen {
+    width: min(920px, 100%);
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope-screen {
+    text-align: center;
+}
+
+.small-title {
+    color: rgba(255,255,255,.65);
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.envelope-wrapper {
+    width: 300px;
+    height: 210px;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+    filter: drop-shadow(0 30px 35px rgba(0,0,0,.65));
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e9bc6d, #96591d);
+}
+
+.envelope-body::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-style: solid;
+    border-width: 105px 150px 0 0;
+    border-color: #c27c30 transparent transparent transparent;
+}
+
+.envelope-body::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-style: solid;
+    border-width: 105px 0 0 150px;
+    border-color: #9e5d20 transparent transparent transparent;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 115px solid #f0c978;
+    transform-origin: top center;
+    transition: transform 1s cubic-bezier(.2,.8,.2,1);
+    z-index: 5;
+}
+
+.envelope-wrapper.open .flap {
+    transform: rotateX(180deg);
+}
+
+.seal {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff0b5, #ae661b);
+    border: 2px solid rgba(255,255,255,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    z-index: 8;
+    transition: opacity .4s;
+}
+
+.envelope-wrapper.open .seal {
+    opacity: 0;
+}
+
+.click-text {
+    margin-top: 35px;
+    color: rgba(255,255,255,.75);
+    letter-spacing: 3px;
+    font-size: 13px;
+    animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+    0%,100% { opacity: .45; }
+    50% { opacity: 1; }
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message-card {
+    width: min(720px, 100%);
+    padding: 55px 45px;
+    text-align: center;
+    border-radius: 25px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55),
+        inset 0 1px rgba(255,255,255,.12);
+    animation: messageIn 1s ease;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.label {
+    color: #f4c975;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.message-card h1 {
+    font-size: clamp(40px, 7vw, 70px);
+    font-weight: 400;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #fff, #ffd77b, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.message-text {
+    white-space: pre-line;
+    color: rgba(255,255,255,.85);
+    line-height: 1.9;
+    font-size: clamp(16px, 2vw, 20px);
+}
+
+.continue-btn,
+.replay-btn {
+    margin-top: 35px;
+    padding: 13px 27px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,215,130,.45);
+    background: rgba(255,190,80,.1);
+    color: #ffe2a3;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.photo-screen {
+    width: 100%;
+    text-align: center;
+}
+
+.photo-counter {
+    color: rgba(255,255,255,.6);
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.photo-frame {
+    width: min(700px, 92vw);
+    height: min(470px, 65vw);
+    min-height: 250px;
+    margin: auto;
+    padding: 12px;
+    border-radius: 8px;
+    background: linear-gradient(
+        135deg,
+        #fff2be,
+        #a96921,
+        #f7d98b,
+        #8d5118
+    );
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.65),
+        0 0 50px rgba(255,190,80,.12);
+    position: relative;
+}
+
+.photo-frame::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 5px;
+}
+
+.photo-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050505;
+    position: relative;
+}
+
+.photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    animation: imageZoom 4.5s ease forwards;
+}
+
+@keyframes imageZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.06); }
+}
+
+.photo-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,.14) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    animation: shine 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0%,30% { transform: translateX(-100%); }
+    65%,100% { transform: translateX(100%); }
+}
+
+.caption {
+    margin-top: 20px;
+    color: rgba(255,255,255,.82);
+    font-size: 18px;
+    font-style: italic;
+}
+
+.progress {
+    width: min(500px, 80vw);
+    height: 3px;
+    margin: 22px auto 0;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: #f3c56f;
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-screen {
+    text-align: center;
+    animation: finalIn 1.5s ease;
+}
+
+@keyframes finalIn {
+    from {
+        opacity: 0;
+        transform: scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.heart {
+    font-size: 80px;
+    animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+}
+
+.final-screen h1 {
+    margin-top: 15px;
+    font-size: clamp(45px, 9vw, 90px);
+    font-weight: 400;
+    background: linear-gradient(90deg, #fff, #ffd273, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.final-screen p {
+    margin-top: 18px;
+    color: rgba(255,255,255,.75);
+    font-size: 18px;
+}
+
+/* =========================================================
+   MUSIC + DOWNLOAD BUTTONS
+========================================================= */
+
+.music-control,
+.download-btn {
+    position: fixed;
+    z-index: 60;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,215,130,.4);
+    background: rgba(0,0,0,.55);
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+.music-control {
+    top: 18px;
+    right: 18px;
+}
+
+.download-btn {
+    bottom: 18px;
+    right: 18px;
+    color: #ffe2a3;
+    font-size: 20px;
+}
+
+.music-control.visible,
+.download-btn.visible {
+    display: flex;
+}
+
+.music-control.playing {
+    animation: musicPulse 1.5s infinite;
+}
+
+@keyframes musicPulse {
+    50% {
+        box-shadow: 0 0 25px rgba(255,200,100,.4);
+    }
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0,0,0,.92);
+    padding: 20px;
+}
+
+.loading.show {
+    display: flex;
+}
+
+.loading-box {
+    width: min(430px, 90vw);
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
+}
+
+.spinner {
+    width: 45px;
+    height: 45px;
+    margin: auto auto 20px;
+    border: 3px solid rgba(255,255,255,.15);
+    border-top-color: #f5cc78;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: rgba(255,255,255,.8);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .app {
+        padding: 15px;
+    }
+
+    .screen {
+        min-height: 540px;
+    }
+
+    .envelope-wrapper {
+        width: 270px;
+        height: 190px;
+    }
+
+    .envelope-body::before {
+        border-width: 95px 135px 0 0;
+    }
+
+    .envelope-body::after {
+        border-width: 95px 0 0 135px;
+    }
+
+    .flap {
+        border-left-width: 135px;
+        border-right-width: 135px;
+        border-top-width: 105px;
+    }
+
+    .message-card {
+        padding: 40px 22px;
+    }
+
+    .message-text {
+        line-height: 1.7;
+    }
+
+    .photo-frame {
+        width: 92vw;
+        height: 64vw;
+        min-height: 230px;
+        padding: 8px;
+    }
+
+    .caption {
+        font-size: 16px;
+    }
+
+    .music-control,
+    .download-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="background">
+    <div class="stars"></div>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+</div>
+
+<!-- FIREWORK CONTAINER -->
+<div id="fireworks"></div>
+
+<!-- MUSIC -->
+<audio
+    id="birthdayMusic"
+    src="music/birthday.mpeg"
+    preload="auto"
+    loop
+    playsinline>
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button
+    id="musicControl"
+    class="music-control"
+    type="button">
+    🔊
+</button>
+
+<!-- DOWNLOAD BUTTON -->
+<button
+    id="downloadBtn"
+    class="download-btn"
+    type="button">
+    ⬇
+</button>
+
+<main class="app">
+
+    <!-- =====================================================
+         ENVELOPE
+    ====================================================== -->
+
+    <section
+        id="envelopeScreen"
+        class="screen envelope-screen">
+
+        <div>
+
+            <div class="small-title">
+                A little surprise awaits
+            </div>
+
+            <div
+                id="envelopeWrapper"
+                class="envelope-wrapper"
+                role="button"
+                tabindex="0">
+
+                <div class="envelope">
+
+                    <div class="envelope-body"></div>
+
+                    <div class="flap"></div>
+
+                    <div class="seal">
+                        ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="click-text">
+                TAP THE ENVELOPE
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
+
+    <section
+        id="messageScreen"
+        class="screen hidden">
+
+        <div class="message-card">
+
+            <div class="label">
+                A special message
+            </div>
+
+            <h1>
+                Happy Birthday ❤️
+            </h1>
+
+            <div
+                id="messageText"
+                class="message-text">
+            </div>
+
+            <button
+                id="continueButton"
+                class="continue-btn">
+                Continue the memories ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PHOTOS
+    ====================================================== -->
+
+    <section
+        id="photoScreen"
+        class="screen hidden">
+
+        <div class="photo-screen">
+
+            <div
+                id="photoCounter"
+                class="photo-counter">
+                MEMORY 1 OF 5
+            </div>
+
+            <div class="photo-frame">
+
+                <div class="photo-inner">
+
+                    <img
+                        id="photoImage"
+                        src=""
+                        alt="Birthday memory">
+
+                    <div class="photo-shine"></div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="photoCaption"
+                class="caption">
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL
+    ====================================================== -->
+
+    <section
+        id="finalScreen"
+        class="screen hidden">
+
+        <div class="final-screen">
+
+            <div class="heart">
+                ❤️
+            </div>
+
+            <h1>
+                Once Again
+                Happy Birthday
+            </h1>
+
+            <p>
+                May your life always be filled with beautiful moments.
+            </p>
+
+            <button
+                id="replayButton"
+                class="replay-btn">
+                Replay Surprise
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     VIDEO LOADING
+========================================================= -->
+
+<div
+    id="loading"
+    class="loading">
+
+    <div class="loading-box">
+
+        <div class="spinner"></div>
+
+        <div
+            id="loadingText"
+            class="loading-text">
+            Preparing your birthday video...
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PERSONAL MESSAGE
+   ========================================================= */
+
+const birthdayMessage =
+`Today is a special day because it celebrates someone truly special.
+
+May every new year of your life bring you more happiness, more beautiful memories, more success and countless reasons to smile.
+
+Keep shining, keep smiling and keep being amazing. ❤️`;
+
+
+/* =========================================================
+   PHOTO FILES
+========================================================= */
+
+const photoPaths = [
+    "photos/photo1.jpg",
+    "photos/photo2.jpg",
+    "photos/photo3.jpg",
+    "photos/photo4.jpg",
+    "photos/photo5.jpg"
+];
+
+const photoCaptions = [
+    "A beautiful memory ❤️",
+    "Another precious moment ✨",
+    "Memories worth keeping forever 💕",
+    "A moment to remember 🌸",
+    "Beautiful memories, beautiful smiles ❤️"
+];
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const music =
+    document.getElementById("birthdayMusic");
+
+const musicControl =
+    document.getElementById("musicControl");
+
+const downloadBtn =
+    document.getElementById("downloadBtn");
+
+const fireworks =
+    document.getElementById("fireworks");
+
+const envelopeScreen =
+    document.getElementById("envelopeScreen");
+
+const messageScreen =
+    document.getElementById("messageScreen");
+
+const photoScreen =
+    document.getElementById("photoScreen");
+
+const finalScreen =
+    document.getElementById("finalScreen");
+
+const envelopeWrapper =
+    document.getElementById("envelopeWrapper");
+
+const messageText =
+    document.getElementById("messageText");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+const photoImage =
+    document.getElementById("photoImage");
+
+const photoCaption =
+    document.getElementById("photoCaption");
+
+const photoCounter =
+    document.getElementById("photoCounter");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const replayButton =
+    document.getElementById("replayButton");
+
+const loading =
+    document.getElementById("loading");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentPhoto = 0;
+let photoTimer = null;
+let progressTimer = null;
+let fireworksTimer = null;
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+messageText.textContent =
+    birthdayMessage;
+
+
+/* =========================================================
+   START MUSIC
+========================================================= */
+
+async function startMusic() {
+
+    try {
+
+        music.volume = 0.85;
+
+        /*
+         * This play() happens because the user tapped
+         * the envelope, which is important for mobile.
+         */
+
+        await music.play();
+
+        musicControl.classList.add("visible");
+        musicControl.classList.add("playing");
+        musicControl.textContent = "🔊";
+
+    } catch (error) {
+
+        console.log(
+            "Music playback blocked:",
+            error
+        );
+
+        musicControl.classList.add("visible");
+        musicControl.textContent = "🔇";
+    }
+}
+
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+
+musicControl.addEventListener(
+    "click",
+    async () => {
+
+        if (music.paused) {
+
+            try {
+
+                await music.play();
+
+                musicControl.textContent = "🔊";
+                musicControl.classList.add("playing");
+
+            } catch (error) {
+
+                console.log(error);
+            }
+
+        } else {
+
+            music.pause();
+
+            musicControl.textContent = "🔇";
+
+            musicControl.classList.remove(
+                "playing"
+            );
+        }
+    }
+);
+
+
+/* =========================================================
+   FIREWORK
+========================================================= */
+
+function createFirework() {
+
+    const firework =
+        document.createElement("div");
+
+    firework.className =
+        "firework";
+
+    const x =
+        10 + Math.random() * 80;
+
+    const y =
+        12 + Math.random() * 50;
+
+    firework.style.left =
+        x + "%";
+
+    firework.style.top =
+        y + "%";
+
+    const colors = [
+        "#ffd166",
+        "#ff5c8a",
+        "#70d6ff",
+        "#c77dff",
+        "#ffffff",
+        "#7cffcb"
+    ];
+
+    const color =
+        colors[
+            Math.floor(
+                Math.random() * colors.length
+            )
+        ];
+
+    for (
+        let i = 0;
+        i < 30;
+        i++
+    ) {
+
+        const spark =
+            document.createElement("span");
+
+        spark.className =
+            "spark";
+
+        spark.style.setProperty(
+            "--angle",
+            (i * 12) + "deg"
+        );
+
+        spark.style.setProperty(
+            "--distance",
+            (70 + Math.random() * 110) + "px"
+        );
+
+        spark.style.color =
+            color;
+
+        spark.style.background =
+            color;
+
+        spark.style.animationDelay =
+            (Math.random() * .12) + "s";
+
+        firework.appendChild(
+            spark
+        );
+    }
+
+    fireworks.appendChild(
+        firework
+    );
+
+    setTimeout(
+        () => firework.remove(),
+        1800
+    );
+}
+
+
+/* =========================================================
+   START FIREWORKS
+========================================================= */
+
+function startFireworks() {
+
+    stopFireworks();
+
+    createFirework();
+    createFirework();
+
+    fireworksTimer =
+        setInterval(
+            () => {
+
+                createFirework();
+
+                if (
+                    Math.random() > .45
+                ) {
+                    setTimeout(
+                        createFirework,
+                        250
+                    );
+                }
+
+            },
+            800
+        );
+}
+
+
+/* =========================================================
+   STOP FIREWORKS
+========================================================= */
+
+function stopFireworks() {
+
+    if (fireworksTimer) {
+
+        clearInterval(
+            fireworksTimer
+        );
+
+        fireworksTimer = null;
+    }
+
+    fireworks.innerHTML = "";
+}
+
+
+/* =========================================================
+   OPEN ENVELOPE
+========================================================= */
+
+async function openEnvelope() {
+
+    if (
+        envelopeWrapper.classList.contains(
+            "open"
+        )
+    ) {
+        return;
+    }
+
+    /*
+     * IMPORTANT:
+     * Music starts directly from the tap.
+     */
+
+    await startMusic();
+
+    envelopeWrapper.classList.add(
+        "open"
+    );
+
+    setTimeout(
+        () => {
+
+            envelopeScreen.classList.add(
+                "hidden"
+            );
+
+            messageScreen.classList.remove(
+                "hidden"
+            );
+
+        },
+        1200
+    );
+}
+
+
+envelopeWrapper.addEventListener(
+    "click",
+    openEnvelope
+);
+
+
+envelopeWrapper.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            openEnvelope();
+        }
+    }
+);
+
+
+/* =========================================================
+   MESSAGE → PHOTOS
+========================================================= */
+
+continueButton.addEventListener(
+    "click",
+    () => {
+
+        messageScreen.classList.add(
+            "hidden"
+        );
+
+        photoScreen.classList.remove(
+            "hidden"
+        );
+
+        startPhotos();
+    }
+);
+
+
+/* =========================================================
+   PHOTOS
+========================================================= */
+
+function startPhotos() {
+
+    currentPhoto = 0;
+
+    showPhoto(
+        currentPhoto
+    );
+}
+
+
+function showPhoto(index) {
+
+    clearTimeout(photoTimer);
+
+    clearInterval(progressTimer);
+
+    if (
+        index >=
+        photoPaths.length
+    ) {
+
+        showFinal();
+
+        return;
+    }
+
+    photoImage.src =
+        photoPaths[index];
+
+    photoCaption.textContent =
+        photoCaptions[index];
+
+    photoCounter.textContent =
+        `MEMORY ${index + 1} OF ${photoPaths.length}`;
+
+    progressBar.style.width =
+        "0%";
+
+    const start =
+        performance.now();
+
+    const duration =
+        4500;
+
+    progressTimer =
+        setInterval(
+            () => {
+
+                const elapsed =
+                    performance.now() -
+                    start;
+
+                const percent =
+                    Math.min(
+                        elapsed /
+                        duration *
+                        100,
+                        100
+                    );
+
+                progressBar.style.width =
+                    percent + "%";
+
+            },
+            30
+        );
+
+    photoTimer =
+        setTimeout(
+            () => {
+
+                currentPhoto++;
+
+                showPhoto(
+                    currentPhoto
+                );
+
+            },
+            duration
+        );
+}
+
+
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
+
+function showFinal() {
+
+    clearTimeout(photoTimer);
+
+    clearInterval(progressTimer);
+
+    photoScreen.classList.add(
+        "hidden"
+    );
+
+    finalScreen.classList.remove(
+        "hidden"
+    );
+
+    downloadBtn.classList.add(
+        "visible"
+    );
+
+    /*
+     * FIREWORKS START HERE
+     */
+
+    startFireworks();
+}
+
+
+/* =========================================================
+   REPLAY
+========================================================= */
+
+replayButton.addEventListener(
+    "click",
+    () => {
+
+        stopFireworks();
+
+        downloadBtn.classList.remove(
+            "visible"
+        );
+
+        finalScreen.classList.add(
+            "hidden"
+        );
+
+        photoScreen.classList.add(
+            "hidden"
+        );
+
+        messageScreen.classList.add(
+            "hidden"
+        );
+
+        envelopeWrapper.classList.remove(
+            "open"
+        );
+
+        envelopeScreen.classList.remove(
+            "hidden"
+        );
+
+        currentPhoto = 0;
+    }
+);
+
+
+/* =========================================================
+   IMAGE LOADING
+========================================================= */
+
+function loadImage(src) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const image =
+                new Image();
+
+            image.onload =
+                () => resolve(image);
+
+            image.onerror =
+                () => reject(
+                    new Error(
+                        "Unable to load " +
+                        src
+                    )
+                );
+
+            image.src = src;
+        }
+    );
+}
+
+
+/* =========================================================
+   VIDEO BACKGROUND
+========================================================= */
+
+function drawVideoBackground(
+    ctx,
+    width,
+    height,
+    time
+) {
+
+    const gradient =
+        ctx.createRadialGradient(
+            width / 2,
+            height / 2,
+            10,
+            width / 2,
+            height / 2,
+            width * .75
+        );
+
+    gradient.addColorStop(
+        0,
+        "#24180a"
+    );
+
+    gradient.addColorStop(
+        .5,
+        "#0c0a07"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#020202"
+    );
+
+    ctx.fillStyle =
+        gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+    const x =
+        width / 2 +
+        Math.sin(
+            time / 1800
+        ) *
+        width *
+        .35;
+
+    const y =
+        height / 2 +
+        Math.cos(
+            time / 2200
+        ) *
+        height *
+        .25;
+
+    const glow =
+        ctx.createRadialGradient(
+            x,
+            y,
+            0,
+            x,
+            y,
+            width * .35
+        );
+
+    glow.addColorStop(
+        0,
+        "rgba(255,205,110,.18)"
+    );
+
+    glow.addColorStop(
+        1,
+        "rgba(255,205,110,0)"
+    );
+
+    ctx.fillStyle =
+        glow;
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+}
+
+
+/* =========================================================
+   VIDEO FIREWORK
+========================================================= */
+
+function drawVideoFirework(
+    ctx,
+    x,
+    y,
+    radius,
+    alpha
+) {
+
+    const colors = [
+        "#ffd166",
+        "#ff5c8a",
+        "#70d6ff",
+        "#c77dff",
+        "#ffffff"
+    ];
+
+    for (
+        let i = 0;
+        i < 24;
+        i++
+    ) {
+
+        const angle =
+            (Math.PI * 2 / 24) *
+            i;
+
+        const distance =
+            radius *
+            (.7 + Math.random() * .3);
+
+        const endX =
+            x +
+            Math.cos(angle) *
+            distance;
+
+        const endY =
+            y +
+            Math.sin(angle) *
+            distance;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            y
+        );
+
+        ctx.lineTo(
+            endX,
+            endY
+        );
+
+        ctx.strokeStyle =
+            colors[
+                i %
+                colors.length
+            ];
+
+        ctx.globalAlpha =
+            alpha;
+
+        ctx.lineWidth = 3;
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.arc(
+            endX,
+            endY,
+            3,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            ctx.strokeStyle;
+
+        ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+}
+
+
+/* =========================================================
+   WRAPPED TEXT
+========================================================= */
+
+function drawWrappedText(
+    ctx,
+    text,
+    x,
+    y,
+    maxWidth,
+    lineHeight
+) {
+
+    const paragraphs =
+        text.split("\n");
+
+    let currentY =
+        y;
+
+    paragraphs.forEach(
+        paragraph => {
+
+            if (
+                paragraph.trim() === ""
+            ) {
+
+                currentY +=
+                    lineHeight;
+
+                return;
+            }
+
+            const words =
+                paragraph.split(" ");
+
+            let line = "";
+
+            words.forEach(
+                word => {
+
+                    const test =
+                        line +
+                        word +
+                        " ";
+
+                    if (
+                        ctx.measureText(
+                            test
+                        ).width >
+                        maxWidth &&
+                        line !== ""
+                    ) {
+
+                        ctx.fillText(
+                            line,
+                            x,
+                            currentY
+                        );
+
+                        currentY +=
+                            lineHeight;
+
+                        line =
+                            word +
+                            " ";
+
+                    } else {
+
+                        line =
+                            test;
+                    }
+                }
+            );
+
+            ctx.fillText(
+                line,
+                x,
+                currentY
+            );
+
+            currentY +=
+                lineHeight;
+        }
+    );
+}
+
+
+/* =========================================================
+   VIDEO ENVELOPE
+========================================================= */
+
+function drawVideoEnvelope(
+    ctx,
+    width,
+    height
+) {
+
+    const ew = 430;
+    const eh = 280;
+
+    const x =
+        (width - ew) / 2;
+
+    const y =
+        (height - eh) / 2;
+
+    ctx.shadowColor =
+        "rgba(0,0,0,.7)";
+
+    ctx.shadowBlur = 40;
+
+    ctx.shadowOffsetY = 20;
+
+    const gradient =
+        ctx.createLinearGradient(
+            x,
+            y,
+            x + ew,
+            y + eh
+        );
+
+    gradient.addColorStop(
+        0,
+        "#e8b96a"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#92551b"
+    );
+
+    ctx.fillStyle =
+        gradient;
+
+    ctx.beginPath();
+
+    ctx.roundRect(
+        x,
+        y,
+        ew,
+        eh,
+        12
+    );
+
+    ctx.fill();
+
+    ctx.shadowColor =
+        "transparent";
+
+    ctx.fillStyle =
+        "#f0c878";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x,
+        y
+    );
+
+    ctx.lineTo(
+        x + ew / 2,
+        y + eh * .48
+    );
+
+    ctx.lineTo(
+        x + ew,
+        y
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    ctx.beginPath();
+
+    ctx.arc(
+        width / 2,
+        y + eh * .55,
+        40,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fillStyle =
+        "#b56c1b";
+
+    ctx.fill();
+
+    ctx.font =
+        "32px Arial";
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillStyle =
+        "#fff";
+
+    ctx.fillText(
+        "❤️",
+        width / 2,
+        y + eh * .55
+    );
+}
+
+
+/* =========================================================
+   VIDEO PHOTO
+========================================================= */
+
+function drawVideoPhoto(
+    ctx,
+    image,
+    width,
+    height,
+    caption,
+    progress
+) {
+
+    drawVideoBackground(
+        ctx,
+        width,
+        height,
+        performance.now()
+    );
+
+    const frameWidth =
+        width * .72;
+
+    const frameHeight =
+        height * .70;
+
+    const frameX =
+        (width - frameWidth) / 2;
+
+    const frameY =
+        height * .09;
+
+    const frameGradient =
+        ctx.createLinearGradient(
+            frameX,
+            frameY,
+            frameX + frameWidth,
+            frameY + frameHeight
+        );
+
+    frameGradient.addColorStop(
+        0,
+        "#fff0bd"
+    );
+
+    frameGradient.addColorStop(
+        .25,
+        "#b77a29"
+    );
+
+    frameGradient.addColorStop(
+        .5,
+        "#f5d889"
+    );
+
+    frameGradient.addColorStop(
+        1,
+        "#8d5419"
+    );
+
+    ctx.fillStyle =
+        frameGradient;
+
+    ctx.fillRect(
+        frameX,
+        frameY,
+        frameWidth,
+        frameHeight
+    );
+
+    const innerX =
+        frameX + 16;
+
+    const innerY =
+        frameY + 16;
+
+    const innerWidth =
+        frameWidth - 32;
+
+    const innerHeight =
+        frameHeight - 32;
+
+    ctx.fillStyle =
+        "#050505";
+
+    ctx.fillRect(
+        innerX,
+        innerY,
+        innerWidth,
+        innerHeight
+    );
+
+    const ratio =
+        image.width /
+        image.height;
+
+    const boxRatio =
+        innerWidth /
+        innerHeight;
+
+    let drawWidth;
+    let drawHeight;
+
+    if (
+        ratio > boxRatio
+    ) {
+
+        drawWidth =
+            innerWidth;
+
+        drawHeight =
+            innerWidth /
+            ratio;
+
+    } else {
+
+        drawHeight =
+            innerHeight;
+
+        drawWidth =
+            innerHeight *
+            ratio;
+    }
+
+    const drawX =
+        innerX +
+        (innerWidth - drawWidth) /
+        2;
+
+    const drawY =
+        innerY +
+        (innerHeight - drawHeight) /
+        2;
+
+    const zoom =
+        1 +
+        progress *
+        .06;
+
+    ctx.save();
+
+    ctx.translate(
+        width / 2,
+        height / 2
+    );
+
+    ctx.scale(
+        zoom,
+        zoom
+    );
+
+    ctx.drawImage(
+        image,
+        drawX - width / 2,
+        drawY - height / 2,
+        drawWidth,
+        drawHeight
+    );
+
+    ctx.restore();
+
+    ctx.textAlign =
+        "center";
+
+    ctx.font =
+        "italic 25px Georgia";
+
+    ctx.fillStyle =
+        "rgba(255,255,255,.9)";
+
+    ctx.fillText(
+        caption,
+        width / 2,
+        height * .90
+    );
+}
+
+
+/* =========================================================
+   GENERATE VIDEO
+========================================================= */
+
+async function generateBirthdayVideo() {
+
+    if (
+        !window.MediaRecorder ||
+        !HTMLCanvasElement.prototype.captureStream
+    ) {
+
+        alert(
+            "Your browser does not support video generation. Please use the latest Chrome or Edge."
+        );
+
+        return;
+    }
+
+    downloadBtn.disabled =
+        true;
+
+    loading.classList.add(
+        "show"
+    );
+
+    try {
+
+        loadingText.textContent =
+            "Loading photos...";
+
+        const images =
+            await Promise.all(
+                photoPaths.map(
+                    loadImage
+                )
+            );
+
+        loadingText.textContent =
+            "Preparing music...";
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        const audioContext =
+            new AudioContext();
+
+        await audioContext.resume();
+
+        const response =
+            await fetch(
+                "music/birthday.mp3",
+                {
+                    cache: "no-cache"
+                }
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Music file not found."
+            );
+        }
+
+        const musicData =
+            await response.arrayBuffer();
+
+        const audioBuffer =
+            await audioContext.decodeAudioData(
+                musicData
+            );
+
+        const audioDestination =
+            audioContext.createMediaStreamDestination();
+
+        const source =
+            audioContext.createBufferSource();
+
+        source.buffer =
+            audioBuffer;
+
+        source.loop = true;
+
+        source.connect(
+            audioDestination
+        );
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+        const width = 1280;
+        const height = 720;
+
+        canvas.width =
+            width;
+
+        canvas.height =
+            height;
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+        const videoStream =
+            canvas.captureStream(
+                30
+            );
+
+        const stream =
+            new MediaStream();
+
+        videoStream
+            .getVideoTracks()
+            .forEach(
+                track =>
+                    stream.addTrack(
+                        track
+                    )
+            );
+
+        audioDestination
+            .stream
+            .getAudioTracks()
+            .forEach(
+                track =>
+                    stream.addTrack(
+                        track
+                    )
+            );
+
+        let mimeType =
+            "video/webm;codecs=vp9,opus";
+
+        if (
+            !MediaRecorder.isTypeSupported(
+                mimeType
+            )
+        ) {
+
+            mimeType =
+                "video/webm;codecs=vp8,opus";
+        }
+
+        if (
+            !MediaRecorder.isTypeSupported(
+                mimeType
+            )
+        ) {
+
+            mimeType =
+                "video/webm";
+        }
+
+        const recorder =
+            new MediaRecorder(
+                stream,
+                {
+                    mimeType,
+                    videoBitsPerSecond:
+                        5000000
+                }
+            );
+
+        const chunks = [];
+
+        recorder.ondataavailable =
+            event => {
+
+                if (
+                    event.data.size >
+                    0
+                ) {
+
+                    chunks.push(
+                        event.data
+                    );
+                }
+            };
+
+        const stopped =
+            new Promise(
+                resolve => {
+
+                    recorder.onstop =
+                        resolve;
+                }
+            );
+
+        /*
+         * Timeline
+         */
+
+        const intro =
+            3000;
+
+        const envelope =
+            2500;
+
+        const message =
+            8000;
+
+        const photo =
+            4500;
+
+        const final =
+            7000;
+
+        const total =
+            intro +
+            envelope +
+            message +
+            photo * images.length +
+            final;
+
+        const start =
+            performance.now();
+
+        source.start(0);
+
+        recorder.start(100);
+
+        loadingText.textContent =
+            "Creating birthday video...";
+
+        await new Promise(
+            resolve => {
+
+                function render() {
+
+                    const elapsed =
+                        performance.now() -
+                        start;
+
+                    /*
+                     * INTRO
+                     */
+
+                    if (
+                        elapsed <
+                        intro
+                    ) {
+
+                        drawVideoBackground(
+                            ctx,
+                            width,
+                            height,
+                            elapsed
+                        );
+
+                        ctx.textAlign =
+                            "center";
+
+                        ctx.textBaseline =
+                            "middle";
+
+                        ctx.font =
+                            "24px Arial";
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,.65)";
+
+                        ctx.fillText(
+                            "A SPECIAL SURPRISE",
+                            width / 2,
+                            height * .40
+                        );
+
+                        ctx.font =
+                            "64px Georgia";
+
+                        ctx.fillStyle =
+                            "#f5d889";
+
+                        ctx.fillText(
+                            "Just for you ❤️",
+                            width / 2,
+                            height * .52
+                        );
+                    }
+
+                    /*
+                     * ENVELOPE
+                     */
+
+                    else if (
+                        elapsed <
+                        intro +
+                        envelope
+                    ) {
+
+                        drawVideoBackground(
+                            ctx,
+                            width,
+                            height,
+                            elapsed
+                        );
+
+                        drawVideoEnvelope(
+                            ctx,
+                            width,
+                            height
+                        );
+
+                        ctx.textAlign =
+                            "center";
+
+                        ctx.font =
+                            "25px Georgia";
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,.75)";
+
+                        ctx.fillText(
+                            "A little surprise awaits...",
+                            width / 2,
+                            height * .88
+                        );
+                    }
+
+                    /*
+                     * MESSAGE
+                     */
+
+                    else if (
+                        elapsed <
+                        intro +
+                        envelope +
+                        message
+                    ) {
+
+                        drawVideoBackground(
+                            ctx,
+                            width,
+                            height,
+                            elapsed
+                        );
+
+                        ctx.textAlign =
+                            "center";
+
+                        ctx.fillStyle =
+                            "#f5d889";
+
+                        ctx.font =
+                            "20px Arial";
+
+                        ctx.fillText(
+                            "A SPECIAL MESSAGE",
+                            width / 2,
+                            120
+                        );
+
+                        ctx.font =
+                            "58px Georgia";
+
+                        ctx.fillStyle =
+                            "#fff";
+
+                        ctx.fillText(
+                            "Happy Birthday ❤️",
+                            width / 2,
+                            200
+                        );
+
+                        ctx.font =
+                            "23px Georgia";
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,.85)";
+
+                        drawWrappedText(
+                            ctx,
+                            birthdayMessage,
+                            width / 2,
+                            280,
+                            900,
+                            42
+                        );
+                    }
+
+                    /*
+                     * PHOTOS
+                     */
+
+                    else if (
+                        elapsed <
+                        intro +
+                        envelope +
+                        message +
+                        photo *
+                        images.length
+                    ) {
+
+                        const photoElapsed =
+                            elapsed -
+                            intro -
+                            envelope -
+                            message;
+
+                        const index =
+                            Math.floor(
+                                photoElapsed /
+                                photo
+                            );
+
+                        const within =
+                            photoElapsed %
+                            photo;
+
+                        const progress =
+                            within /
+                            photo;
+
+                        drawVideoPhoto(
+                            ctx,
+                            images[index],
+                            width,
+                            height,
+                            photoCaptions[index],
+                            progress
+                        );
+
+                        ctx.textAlign =
+                            "left";
+
+                        ctx.font =
+                            "20px Arial";
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,.75)";
+
+                        ctx.fillText(
+                            `MEMORY ${index + 1} / ${images.length}`,
+                            50,
+                            55
+                        );
+                    }
+
+                    /*
+                     * FINAL WITH FIREWORKS
+                     */
+
+                    else {
+
+                        drawVideoBackground(
+                            ctx,
+                            width,
+                            height,
+                            elapsed
+                        );
+
+                        const finalElapsed =
+                            elapsed -
+                            (
+                                intro +
+                                envelope +
+                                message +
+                                photo *
+                                images.length
+                            );
+
+                        /*
+                         * Multiple fireworks
+                         */
+
+                        for (
+                            let i = 0;
+                            i < 7;
+                            i++
+                        ) {
+
+                            const fx =
+                                120 +
+                                (
+                                    i * 180
+                                ) %
+                                1100;
+
+                            const fy =
+                                100 +
+                                (
+                                    i * 83
+                                ) %
+                                350;
+
+                            const cycle =
+                                (
+                                    finalElapsed +
+                                    i * 500
+                                ) %
+                                2200;
+
+                            const radius =
+                                Math.min(
+                                    cycle /
+                                    7,
+                                    150
+                                );
+
+                            const alpha =
+                                cycle < 1200
+                                ? 1
+                                : Math.max(
+                                    0,
+                                    1 -
+                                    (
+                                        cycle -
+                                        1200
+                                    ) /
+                                    1000
+                                );
+
+                            drawVideoFirework(
+                                ctx,
+                                fx,
+                                fy,
+                                radius,
+                                alpha
+                            );
+                        }
+
+                        ctx.textAlign =
+                            "center";
+
+                        ctx.textBaseline =
+                            "middle";
+
+                        ctx.font =
+                            "105px Arial";
+
+                        ctx.fillStyle =
+                            "#ff557e";
+
+                        ctx.fillText(
+                            "❤️",
+                            width / 2,
+                            height * .33
+                        );
+
+                        ctx.font =
+                            "72px Georgia";
+
+                        ctx.fillStyle =
+                            "#f5d889";
+
+                        ctx.fillText(
+                            "Happy Birthday",
+                            width / 2,
+                            height * .53
+                        );
+
+                        ctx.font =
+                            "25px Georgia";
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,.85)";
+
+                        ctx.fillText(
+                            "May your life always be filled with beautiful moments.",
+                            width / 2,
+                            height * .66
+                        );
+                    }
+
+                    if (
+                        elapsed >=
+                        total
+                    ) {
+
+                        resolve();
+
+                        return;
+                    }
+
+                    requestAnimationFrame(
+                        render
+                    );
+                }
+
+                render();
+            }
+        );
+
+        recorder.stop();
+
+        await stopped;
+
+        source.stop();
+
+        stream
+            .getTracks()
+            .forEach(
+                track =>
+                    track.stop()
+            );
+
+        await audioContext.close();
+
+        loadingText.textContent =
+            "Preparing your download...";
+
+        const blob =
+            new Blob(
+                chunks,
+                {
+                    type: mimeType
+                }
+            );
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+        link.href =
+            url;
+
+        link.download =
+            "Birthday-Surprise.webm";
+
+        document.body.appendChild(
+            link
+        );
+
+        link.click();
+
+        link.remove();
+
+        setTimeout(
+            () =>
+                URL.revokeObjectURL(
+                    url
+                ),
+            5000
+        );
+
+        loading.classList.remove(
+            "show"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Video error:",
+            error
+        );
+
+        loading.classList.remove(
+            "show"
+        );
+
+        alert(
+            "Video creation failed. Please check that all 5 photos and music/birthday.mp3 are uploaded correctly."
+        );
+
+    } finally {
+
+        downloadBtn.disabled =
+            false;
+    }
+}
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+downloadBtn.addEventListener(
+    "click",
+    generateBirthdayVideo
+);
+
+
+/* =========================================================
+   PRELOAD
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        photoPaths.forEach(
+            path => {
+
+                const image =
+                    new Image();
+
+                image.src =
+                    path;
+            }
+        );
+
+        music.load();
+    }
+);
+
+</script>
+
+</body>
+</html>
